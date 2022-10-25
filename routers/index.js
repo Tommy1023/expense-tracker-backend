@@ -1,11 +1,13 @@
 const express = require('express')
 const router = express.Router()
 const admin = require('./modules/admin')
+const socialMedialAuth = require('./modules/socialMediaAuth')
 const recordController = require('../controllers/record-controller')
 const userController = require('../controllers/user-controller')
 const productController = require('../controllers/product-controller')
 const locationController = require('../controllers/location-controller')
 const { loginAuthenticated, authenticated, authenticatedAdmin } = require('../middleware/auth')
+const passport = require('passport')
 
 // user
 router.get('/auth', authenticated, userController.getUser)
@@ -27,6 +29,7 @@ router.get('/products', authenticated, productController.getProducts)
 //location
 router.get('/locations', authenticated, locationController.getLocations)
 
-
+//socialMedia login
+router.use('/socialMediaAuth', socialMedialAuth)
 
 module.exports = router

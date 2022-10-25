@@ -1,4 +1,5 @@
 const express = require('express')
+const session = require('express-session')
 const cors = require('cors')
 const passport = require('passport')
 
@@ -11,7 +12,7 @@ const PORT = process.env.PORT
 const api = require('./routers/index')
 
 const corsOptions = {
-  origin: 'https://expense-tracker.up.railway.app',
+  origin: process.env.CLIENT_URL,
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization']
@@ -20,7 +21,17 @@ const corsOptions = {
 app.use(cors(corsOptions))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 * 7 // One week
+  }
+}))
 app.use(passport.initialize())
+app.use(passport.session())
+
 app.use('/api', api)
 
 app.listen(PORT, () => {
