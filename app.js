@@ -11,16 +11,15 @@ const PORT = process.env.PORT
 const api = require('./routers/index')
 
 const corsOptions = {
-  origin: '*',
+  origin: 'http://localhost:3000',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
   preflightContinue: false,
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  optionsSuccessStatus: 200
+  allowedHeaders: ['Content-Type', 'Authorization']
 };
 
 app.use(cors(corsOptions))
-app.use(express.urlencoded({ extended: true })) 
-app.use(express.json()) 
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
 app.use(passport.initialize())
 app.use('/api', api)
 
