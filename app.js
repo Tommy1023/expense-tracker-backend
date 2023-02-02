@@ -11,9 +11,9 @@ const PORT = process.env.PORT
 const api = require('./routers/index')
 
 const corsOptions = {
-  origin: 'http://localhost:3000',
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-  preflightContinue: false,
+  origin: 'https://expense-tracker.up.railway.app',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization']
 };
 
