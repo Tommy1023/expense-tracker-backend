@@ -14,6 +14,10 @@
     "dialect": "mysql"
   },
   "production": {
-    "use_env_variable": "MYSQL_URL"
+    "username": "root",
+    "password": "rootpassword",
+    "database": "expense_tracker",
+    "host": "expense-tracker-mysql.internal",
+    "dialect": "mysql"
   }
 }
